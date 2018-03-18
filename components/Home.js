@@ -3,7 +3,9 @@ import { AppRegistry, Image, Button, StyleSheet, Text, View } from 'react-native
 
 export class Home extends React.Component {
   randomImageGenerator = () => {
-    this.props.navigate('Video');
+    // const { navigate } = this.props.navigate;
+    this.props.navigation.navigate('Video')
+
     // this.props.navigate('Video', 'https://www.youtube.com/watch?v=RJa4kG1N3d0')
   }
 
