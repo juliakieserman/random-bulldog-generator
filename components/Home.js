@@ -1,25 +1,51 @@
 import React from 'react';
 import { AppRegistry, Image, Button, StyleSheet, Text, View } from 'react-native';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
+
+const radio_props = [
+  {label: "Photo", value: true},
+  {label: "Video", value: false}
+];
 
 export class Home extends React.Component {
-  randomImageGenerator = () => {
-    // const { navigate } = this.props.navigate;
-    this.props.navigation.navigate('Video')
+  constructor(props) {
+    super(props);
+    this.state = {
+      typePhoto: true,
+    }
+  }
+  
+  contentGenerator = () => {
+    if (this.state.typePhoto) {
 
-    // this.props.navigate('Video', 'https://www.youtube.com/watch?v=RJa4kG1N3d0')
+    }
+    else {
+      this.props.navigation.navigate('Video');
+    }
+  }
+
+  setContentType = () => {
+    this.setState({typePhoto: !this.state.typePhoto});
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Button 
-        onPress={this.randomImageGenerator}
-        title="Show me something handsome"
-      />
-      <Image 
-        source={{uri: "https://facebook.github.io/react/logo-og.png"}}
-        style={{width: 400, height: 400}}
+          <Button 
+          onPress={this.contentGenerator}
+          title="Show me something handsome"
         />
+         <View style={{display: "flex"}}>
+        <RadioForm
+          radio_props={radio_props}
+          initial={true}
+          onPress={this.setContentType}
+          />
+        </View>
+        <Image 
+          source={require("../assets/jack.png")}
+          style={{width: 400, height: 400}}
+          />
       </View>
     );
   }
